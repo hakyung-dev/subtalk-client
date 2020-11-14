@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 const Home = (props) => {
-  const { setName } = props;
+  const { setName, getLocation, name } = props;
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
-  const [isNext, setIsNext] = useState(false);
+
+  useEffect(() => {
+    getLocation();
+  }, [getLocation]);
 
   useEffect(() => {
     setTimeout(() => setError(''), 2000);
@@ -22,10 +25,9 @@ const Home = (props) => {
     }
 
     setName(value);
-    setIsNext(true);
   };
 
-  if (isNext) {
+  if (name) {
     return <Redirect to="/map" />;
   }
 
