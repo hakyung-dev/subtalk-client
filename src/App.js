@@ -1,9 +1,20 @@
-const App = () => {
+import { Route, Switch } from 'react-router-dom';
+
+import Index from './pages/Index';
+import './styles/index.scss';
+
+const App = (props) => {
   return (
     <div className="App">
-      <h1>SUB Talk</h1>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={(routerProps) => <Index {...routerProps} {...props} />}
+        />
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;
