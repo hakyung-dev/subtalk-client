@@ -6,13 +6,22 @@ import {
   Marker,
 } from 'react-google-maps';
 import { epsgToWgs } from '../utils/transformCoordinates';
+
+import ArrivalBoard from '../components/ArrivalBoard';
 import metroMarker from '../styles/images/metro.png';
 import nowMarker from '../styles/images/now.png';
 
 const Map = (props) => {
-  const { currentLocation, getNearStation, stationLocation } = props;
+  const {
+    currentLocation,
+    getNearStation,
+    stationLocation,
+    selectStation,
+    diselect,
+    selectedStation,
+  } = props;
   const [mapCenter, setMapCenter] = useState(currentLocation);
-  const mapRef = useRef(null);
+  const mapRef = useRef();
   const [zoom, setZoom] = useState(15);
 
   useEffect(() => {
@@ -22,6 +31,10 @@ const Map = (props) => {
   const handleDragEnd = () => {
     const newCenter = mapRef.current.getCenter().toJSON();
     setMapCenter(newCenter);
+  };
+
+  const closeModal = () => {
+    diselect();
   };
 
   const googleMaps = () => {
@@ -46,16 +59,23 @@ const Map = (props) => {
               Number(station.subwayYcnts),
             ];
             const w = epsgToWgs(e);
-
+            const stationInfo = {
+              name: station.statnNm,
+              subwayId: station.subwayId,
+              lineName: station.subwayNm,
+            };
+            const handleClick = () => {
+              diselect();
+              setZoom(17);
+              setMapCenter({ lat: w[1], lng: w[0] });
+              selectStation(stationInfo);
+            };
             return (
               <Marker
                 key={i}
                 position={{ lat: w[1], lng: w[0] }}
                 icon={metroMarker}
-                onClick={() => {
-                  setZoom(17);
-                  setMapCenter({ lat: w[1], lng: w[0] });
-                }}
+                onClick={handleClick}
               />
             );
           })}
@@ -73,6 +93,7 @@ const Map = (props) => {
         containerElement={<div style={{ height: `100vh` }} />}
         mapElement={<div style={{ height: `100%` }} />}
       />
+      {selectedStation && <ArrivalBoard {...props} closeModal={closeModal} />}
     </div>
   );
 };
