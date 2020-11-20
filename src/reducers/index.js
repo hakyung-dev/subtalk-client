@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
 import userReducer from './userReducer';
-import locationReducer from './locationReducer';
+import stationReducer from './stationReducer';
 
 export default combineReducers({
   user: userReducer,
-  location: locationReducer,
+  station: stationReducer,
 });
