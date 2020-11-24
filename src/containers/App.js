@@ -9,7 +9,7 @@ import { wgsToEpsg } from '../utils/transformCoordinates';
 import App from '../App';
 
 const mapStateToProps = (state) => ({
-  name: state.user.name,
+  user: state.user.profile,
   currentLocation: state.user.currentLocation,
   stationLocation: state.station.near,
   selectedStation: state.station.selected,

@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  name: null,
+  profile: null,
   currentLocation: { lat: 37.572823, lng: 126.976881 },
 };
 
@@ -10,7 +10,10 @@ const userReducer = (state = initialState, action) => {
     case types.SET_NAME:
       return {
         ...state,
-        name: action.name,
+        profile: {
+          name: action.name,
+          id: Date.now() + Math.floor(Math.random() * 1000),
+        },
       };
     case types.GET_CURRENT_LOCATION:
       return {
