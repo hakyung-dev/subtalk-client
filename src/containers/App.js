@@ -6,6 +6,7 @@ import {
   getRealtimeArrivalApi,
 } from '../api';
 import { wgsToEpsg } from '../utils/transformCoordinates';
+import socketClient from '../config/socket';
 import App from '../App';
 
 const mapStateToProps = (state) => ({
@@ -14,11 +15,23 @@ const mapStateToProps = (state) => ({
   stationLocation: state.station.near,
   selectedStation: state.station.selected,
   realtimeArrivalInfo: state.station.realtimeArrivalInfo,
-  trainNumber: state.room.number,
+  roomNumber: state.room.number,
   roomMessages: state.room.messages,
 });
 
 const mapDispatchToProps = (dispatch) => {
+  socketClient.on('anounce', (message) => {
+    const anouncer = {
+      name: 'anouncer',
+      id: '000000000',
+    };
+    dispatch(actions.addMessage(anouncer, message));
+  });
+
+  socketClient.on('receive message', (user, message) => {
+    dispatch(actions.addMessage(user, message));
+  });
+
   return {
     setName(name) {
       dispatch(actions.setName(name));
@@ -91,6 +104,13 @@ const mapDispatchToProps = (dispatch) => {
       }
       const arrivalInfo = { upLine: upLine, downLine: downLine };
       dispatch(actions.getRealtimeArrivalInfo(arrivalInfo));
+    },
+    enterRoom(roomNo, user) {
+      dispatch(actions.getRoomNumber(roomNo));
+      socketClient.emit('enter room', roomNo, user);
+    },
+    submitMessage(roomNo, user, message) {
+      socketClient.emit('send message', roomNo, user, message);
     },
   };
 };

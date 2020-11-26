@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Timer from './Timer';
 
 const RealtimeBoard = (props) => {
@@ -12,8 +12,9 @@ const RealtimeBoard = (props) => {
     barvlDt,
     recptnDt,
     btrainSttus,
+    subwayId,
   } = props.arrival;
-  const { station } = props;
+  const { station, enterRoom, roomNumber, user } = props;
 
   const timeGap = new Date() - new Date(recptnDt);
   const transformSec = parseInt(timeGap / 1000);
@@ -65,16 +66,26 @@ const RealtimeBoard = (props) => {
   const trainStatus = btrainSttus && (
     <span className="status">{btrainSttus}</span>
   );
+  const roomNo = btrainNo + subwayId;
+
+  const handleEnter = (e) => {
+    e.preventDefault();
+    enterRoom(roomNo, user);
+  };
+
+  if (roomNumber) {
+    return <Redirect to={`/chat/${roomNo}`} />;
+  }
 
   return (
     <div className="container-timer">
-      <Link to={`/chat/${btrainNo}`}>
+      <button className="wrap" onClick={handleEnter}>
         <span className="direction">
           {direction}
           {trainStatus}
         </span>
         {realTime()}
-      </Link>
+      </button>
     </div>
   );
 };
