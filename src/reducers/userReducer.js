@@ -20,6 +20,11 @@ const userReducer = (state = initialState, action) => {
         ...state,
         currentLocation: action.location,
       };
+    case types.OUT_ROOM:
+      return {
+        ...state,
+        profile: null,
+      };
     default:
       return state;
   }

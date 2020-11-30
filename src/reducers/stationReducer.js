@@ -23,6 +23,12 @@ const locationReducer = (state = initialState, action) => {
         ...state,
         realtimeArrivalInfo: action.info,
       };
+    case types.OUT_ROOM:
+      return {
+        near: [],
+        selected: null,
+        realtimeArrivalInfo: null,
+      };
     default:
       return state;
   }

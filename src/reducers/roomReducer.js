@@ -23,7 +23,11 @@ const roomReducer = (state = initialState, action) => {
           },
         ]),
       };
-
+    case types.OUT_ROOM:
+      return {
+        number: null,
+        messages: [],
+      };
     default:
       return state;
   }
