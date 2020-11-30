@@ -4,6 +4,7 @@ import {
   getNearSubwayStationsApi,
   getStationInfoApi,
   getRealtimeArrivalApi,
+  getTrainPositionApi,
 } from '../api';
 import { wgsToEpsg } from '../utils/transformCoordinates';
 import socketClient from '../config/socket';
@@ -11,6 +12,8 @@ import App from '../App';
 
 const mapStateToProps = (state) => ({
   user: state.user.profile,
+  train: state.train.info,
+  trainPosition: state.train.currentPosition,
   currentLocation: state.user.currentLocation,
   stationLocation: state.station.near,
   selectedStation: state.station.selected,
@@ -111,6 +114,26 @@ const mapDispatchToProps = (dispatch) => {
     },
     submitMessage(roomNo, user, message) {
       socketClient.emit('send message', roomNo, user, message);
+    },
+    outRoom(roomNo, user) {
+      socketClient.emit('out room', roomNo, user);
+      dispatch(actions.outRoom());
+    },
+    getTrainInfo(trainInfo) {
+      dispatch(actions.getTrain(trainInfo));
+    },
+    async getTrainPosition(train) {
+      const res = await getTrainPositionApi(train);
+      const realtimePostionByLine = res.data.realtimePositionList;
+      const findByNo = (item) => {
+        if (item.trainNo === train.trainNo) return true;
+        return false;
+      };
+
+      if (realtimePostionByLine) {
+        const filtered = realtimePostionByLine.filter(findByNo);
+        dispatch(actions.getTrainPosition(filtered[0]));
+      }
     },
   };
 };
