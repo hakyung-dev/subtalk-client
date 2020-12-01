@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&family=Do+Hyeon&display=swap');
+@font-face {
+  font-family: 'S-CoreDream-4Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$font-title: 'Squada One', 'S-CoreDream-4Regular', serif;
+$font-body: 'Roboto', 'S-CoreDream-4Regular', sans-serif;
+$font-name: 'Do Hyeon', sans-serif;
+
+$ice: #bbccc5;
+$blue: #a1c3fc;
+$purple: #523D73;
+$light-purple: #C3B4D9;
+$green: #438C7D;
+
+$subwayId-data: (
+  num1001: #0052a4,
+  num1002: #009d3e,
+  num1003: #ef7c1c,
+  num1004: #00a5de,
+  num1005: #996cac,
+  num1006: #cd7c2f,
+  num1007: #747f00,
+  num1008: #ea545d,
+  num1009: #bdb092,
+  num1063: #77c4a3,
+  num1065: #01C4C4,
+  num1075: #f5a200,
+  num1077: #ed1b24,
+);
+
+@keyframes slide-up {
+  100% {
+    bottom: -40px;
+  }
+}
+
+@keyframes leftright {
+  0% {
+    padding-left: -170%;
+  }
+  100% {
+    padding-left: 140%;
+  }
+}
+
+@mixin respond-to($media) {
+  @if $media == mobile {
+    @media only screen and (max-width: 767px) {
+      @content;
+    }
+  }
+}

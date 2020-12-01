@@ -1,0 +1,14 @@
+.bg-basic {
+  background: {
+    image: url('../styles/images/subway.png');
+    color: #040c18;
+    repeat: repeat-x;
+    size: 60vh;
+    position: 50% 100%;
+  }
+}
+
+.center {
+  z-index: 100;
+  width: 4rem;
+}

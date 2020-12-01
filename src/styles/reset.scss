@@ -1,0 +1,58 @@
+html {
+  font-size: 100%;
+  // font-family: $font-body;
+  // min-width: $small;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0;
+}
+
+// a {
+//   color: $color-font;
+// }
+
+input {
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  border: none;
+  background: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+.invisible {
+  display: none;
+}
+
+@include respond-to(mobile) {
+  html {
+    font-size: 80%;
+  }
+}
