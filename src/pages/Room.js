@@ -2,11 +2,14 @@ import React, { useEffect, useState, useRef } from 'react';
 import socketClient from '../config/socket';
 
 import TrainInfo from '../components/TrainInfo';
+import OutModal from '../components/OutModal';
+import GeoStatus from '../components/GeoStatus';
 
 const Room = (props) => {
-  const { roomNumber, roomMessages, user, submitMessage } = props;
+  const { roomNumber, roomMessages, user, submitMessage, outRoom } = props;
   const [text, setText] = useState('');
   const [typing, setTyping] = useState('');
+  const [isModal, setIsModal] = useState(false);
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -24,6 +27,15 @@ const Room = (props) => {
 
   const handleChange = (e) => {
     setText(e.target.value);
+  };
+
+  const closeModal = () => {
+    outRoom(roomNumber, user);
+    setIsModal(false);
+  };
+
+  const handleModal = () => {
+    setIsModal(true);
   };
 
   const handleSubmit = async (e) => {
@@ -67,6 +79,7 @@ const Room = (props) => {
   return (
     <div className="container-room">
       <div className="room-head">
+        <GeoStatus {...props} handleModal={handleModal} />
         <TrainInfo {...props} />
       </div>
       <div className="room-body-chat bg-basic">
@@ -90,6 +103,7 @@ const Room = (props) => {
           </button>
         </form>
       </div>
+      {isModal && <OutModal {...props} closeModal={closeModal} />}
     </div>
   );
 };
