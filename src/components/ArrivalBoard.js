@@ -71,7 +71,7 @@ const ArrivalBoard = (props) => {
           X
         </div>
       </div>
-      <div className={'platform ' + 'num' + selectedStation.subwayId}>
+      <div className={`platform num${selectedStation.subwayId}`}>
         <div className="from">{'< ' + selectedStation.statnTnm}</div>
         <div className="name-box">
           <div className={longName}>{selectedStation.statnNm}</div>
