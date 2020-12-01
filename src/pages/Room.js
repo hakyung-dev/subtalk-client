@@ -79,7 +79,11 @@ const Room = (props) => {
   return (
     <div className="container-room">
       <div className="room-head">
-        <GeoStatus {...props} handleModal={handleModal} />
+        <GeoStatus
+          {...props}
+          handleModal={handleModal}
+          closeModal={closeModal}
+        />
         <TrainInfo {...props} />
       </div>
       <div className="room-body-chat bg-basic">

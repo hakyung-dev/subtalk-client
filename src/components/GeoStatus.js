@@ -3,7 +3,7 @@ import { distanceBetween } from '../utils/index';
 import { allStationLocation } from '../data/allStationLocation';
 
 const GeoStatus = (props) => {
-  const { currentLocation, trainPosition, handleModal } = props;
+  const { currentLocation, trainPosition, handleModal, closeModal } = props;
   const [newLocation, setNewLocation] = useState(currentLocation);
   const [watchStatus, setWatchStatus] = useState(null);
 
@@ -47,7 +47,14 @@ const GeoStatus = (props) => {
 
   const statusClass = watchStatus ? 'watch-status-err' : 'watch-status';
 
-  return <div className={statusClass}>{watchStatus}</div>;
+  return (
+    <div className="top-status">
+      <button className="button-out" onClick={() => closeModal()}>
+        OUT
+      </button>
+      <div className={statusClass}>{watchStatus}</div>
+    </div>
+  );
 };
 
 export default GeoStatus;
