@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 const Home = (props) => {
-  const { setName, getLocation, name } = props;
+  const { setName, getLocation, user } = props;
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
@@ -27,7 +27,7 @@ const Home = (props) => {
     setName(value);
   };
 
-  if (name) {
+  if (user) {
     return <Redirect to="/map" />;
   }
 
