@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Timer from './Timer';
 
 const RealtimeBoard = (props) => {
+  const { station, enterRoom, roomNumber, user, getTrainInfo, selectedStation, arrival } = props;
   const {
     arvlCd,
     arvlMsg3,
@@ -13,8 +14,7 @@ const RealtimeBoard = (props) => {
     recptnDt,
     btrainSttus,
     subwayId,
-  } = props.arrival;
-  const { station, enterRoom, roomNumber, user } = props;
+  } = arrival;
 
   const timeGap = new Date() - new Date(recptnDt);
   const transformSec = parseInt(timeGap / 1000);
@@ -70,6 +70,7 @@ const RealtimeBoard = (props) => {
 
   const handleEnter = (e) => {
     e.preventDefault();
+    getTrainInfo({ line: selectedStation.subwayNm, trainNo: btrainNo });
     enterRoom(roomNo, user);
   };
 
