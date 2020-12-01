@@ -8,14 +8,11 @@ const Timer = (props) => {
     setTime(time - 1);
   };
 
-  const set = () => {
-    if (time > 0) {
-      setTimeout(timer, 1000);
-    }
-  };
-
   useEffect(() => {
-    set();
+    if (time > 0) {
+      const callTimer = setTimeout(timer, 1000);
+      return () => clearTimeout(callTimer);
+    }
   }, [time]);
 
   const min = parseInt(time / 60) > 0 && `${parseInt(time / 60)}분`;
