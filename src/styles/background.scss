@@ -1,14 +1,23 @@
 .bg-basic {
   background: {
-    image: url('../styles/images/subway.png');
-    color: #040c18;
+    image: url('../styles/images/subway.svg');
+    color: #ffffff;
     repeat: repeat-x;
     size: 60vh;
-    position: 50% 100%;
+    position: 0% 100%;
   }
 }
 
 .center {
   z-index: 100;
   width: 4rem;
+}
+
+.bg-room {
+  background: {
+    image: url('../styles/images/station.svg');
+    repeat: repeat-x;
+    size: 75vh;
+    position: 0% 100%;
+  }
 }

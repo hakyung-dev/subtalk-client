@@ -13,7 +13,7 @@ const GeoStatus = (props) => {
         newLocation,
         allStationLocation[trainPosition.statnNm]
       );
-      if (km > 5) {
+      if (km > 10) {
         handleModal();
       }
     }
@@ -48,7 +48,7 @@ const GeoStatus = (props) => {
   const statusClass = watchStatus ? 'watch-status-err' : 'watch-status';
 
   return (
-    <div className="top-status">
+    <div className="geo-status">
       <button className="button-out" onClick={() => closeModal()}>
         OUT
       </button>

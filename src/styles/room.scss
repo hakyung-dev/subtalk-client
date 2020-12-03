@@ -1,0 +1,267 @@
+.container-room {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+// section head
+
+.room-head {
+  height: 90px;
+  padding-bottom: 15px;
+  position: fixed;
+  width: 100%;
+  z-index: 70;
+  background-color: #ffffff;
+}
+
+.geo-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  font-family: $font-body;
+  margin-bottom: 10px;
+
+  .button-out {
+    margin: 0 5px;
+    padding: 5px 10px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: $green;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $purple;
+    }
+  }
+
+  .watch-status {
+    text-align: right;
+    padding: 0 10px;
+    &:before {
+      content: '\2713';
+      color: green;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+  }
+  .watch-status-err {
+    text-align: right;
+    padding: 0 10px 20px;
+    &:before {
+      content: '\2713';
+      color: red;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.realtime-position {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+@each $subwayId, $color in $subwayId-data {
+  .#{$subwayId} {
+    align-items: center;
+    height: 2rem;
+    background-color: #{$color};
+    font-family: $font-body;
+    font-weight: 600;
+
+    .current-station {
+      min-width: 20rem;
+      justify-content: center;
+      align-items: center;
+      border-radius: 40px;
+      .info {
+        padding: 0 1rem;
+        height: 50px;
+        line-height: 1;
+        display: grid;
+        grid-template-columns: 0.8fr 2fr 0.5fr;
+        text-align: center;
+        align-items: center;
+        background: #ffffff;
+        border-radius: 40px;
+        border: 5px solid #{$color};
+        color: black;
+      }
+
+      .station {
+        font-size: 1.2rem;
+      }
+      .status {
+        font-size: 0.9rem;
+      }
+      .refresh {
+        font-size: 1.2rem;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.room-body-chat {
+  margin: 90px 0 105px 0;
+  height: calc(100vh - 195px);
+}
+
+.box-chat {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px 0px;
+  height: inherit;
+  overflow: auto;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.8)
+  );
+
+  .message {
+    margin-bottom: 10px;
+    word-break: break-all;
+  }
+
+  .notice {
+    align-self: center;
+    padding: 7px;
+    background-color: $green;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    color: #ffffff;
+  }
+
+  .me {
+    align-self: flex-end;
+  }
+
+  .text-user {
+    color: #000000;
+    margin-bottom: 2px;
+    font-weight: 600;
+  }
+
+  .you {
+    color: #ffffff;
+    align-self: flex-start;
+  }
+
+  .wrap-message {
+    display: flex;
+    align-items: flex-end;
+    font-family: $font-body;
+
+    .text-notice {
+      width: 20rem;
+      text-align: center;
+    }
+
+    .text-me {
+      min-height: 28px;
+      padding: 8px 10px;
+      color: black;
+      background-color: $light-purple;
+      border-radius: 10px;
+      margin: 0 0 0 5px;
+      max-width: 50vw;
+    }
+
+    .text-you {
+      max-width: 50vw;
+      min-height: 28px;
+      padding: 8px 15px;
+      background-color: #523d73;
+      border-top-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      // border-radius: 20px;
+      margin: 0 5px;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        border-left: 5px solid transparent;
+        border-right: 5px solid $purple;
+        border-top: 5px solid $purple;
+        border-bottom: 5px solid transparent;
+        left: -10px;
+        top: 0px;
+      }
+    }
+
+    .text-time-me {
+      font-size: 0.9rem;
+      order: -1;
+    }
+
+    .text-time-you {
+      color: #000000;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.room-body-submit {
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffff;
+
+  .box-ing {
+    // margin: 0 0 10px 10px;
+    height: 20px;
+    align-self: flex-start;
+    color: black;
+    font-family: $font-body;
+  }
+
+  .form-chat {
+    display: flex;
+    width: 95%;
+    margin-top: 5px;
+    padding: 8px 10px 9px 20px;
+    border: 1px solid #888888;
+    border-radius: 60px;
+
+    .input-message {
+      width: 100%;
+      margin-right: 10px;
+      font-weight: 600;
+    }
+
+    .submit {
+      width: 30px;
+      height: 30px;
+      padding: 5px 10px;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      border-radius: 50px;
+      border: 1px solid $light-purple;
+      background-color: $light-purple;
+
+      &:hover {
+        cursor: pointer;
+        color: #ffffff;
+        background-color: $purple;
+      }
+    }
+  }
+}

@@ -1,13 +1,5 @@
-// #screen {
-//   margin: 0 auto;
-//   max-width: 414px;
-//   max-height: 896px;
-//   text-align: center;
-// }
-
 .container {
   height: 100vh;
-  color: #ffffff;
   font-family: $font-title;
   font-weight: 400;
 
@@ -17,6 +9,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    color: $brown;
   }
 
   .title {
@@ -38,9 +31,11 @@
     text-align: center;
     font-size: 1.1rem;
     font-weight: 600;
-    color: $ice;
     background: none;
     border-bottom: 2px solid $ice;
+    &::placeholder {
+      color: $ice;
+    }
   }
 
   .button-enter {
@@ -165,6 +160,7 @@ a {
           background: #ffffff;
           border-radius: 40px;
           font-size: 1.5rem;
+          font-weight: 400;
           font-family: $font-name;
           border: 3px solid #{$color};
           color: black;
@@ -254,263 +250,15 @@ a {
   }
 }
 
-.container-room {
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: white;
-  position: relative;
-}
-
-.room-head {
-  .top-status {
-    display: flex;
-    justify-content: space-between;
-    .button-out {
-      background-color: $purple;
-      color: #ffffff;
-      margin: 5px;
-      border-radius: 5px;
-      padding: 0 20px;
-      font-weight: 600;
-      &:hover {
-        cursor: pointer;
-        background-color: $light-purple;
-        color: #000000;
-      }
-    }
-  }
-
-  min-height: 9vh;
-  padding-bottom: 20px;
-  background-color: #040c17;
-  .watch-status {
-    font-family: $font-body;
-    text-align: right;
-    padding: 0 10px 20px;
-    &:before {
-      content: '\2713';
-      color: green;
-      font-weight: 600;
-      font-size: 1.3rem;
-    }
-  }
-  .watch-status-err {
-    font-family: $font-body;
-    text-align: right;
-    padding: 0 10px 20px;
-    &:before {
-      content: '\2713';
-      color: red;
-      font-weight: 600;
-      font-size: 1.3rem;
-    }
-  }
-
-  .realtime-position {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
-  @each $subwayId, $color in $subwayId-data {
-    .#{$subwayId} {
-      // display: flex;
-      align-items: center;
-      height: 2.5rem;
-      background-color: #{$color};
-      font-family: $font-body;
-      font-weight: 600;
-
-      .current-station {
-        min-width: 20rem;
-        // height: 60px;
-        // display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 40px;
-        // border: 5px solid #040C17;
-        .info {
-          padding: 0 1rem;
-          // min-width: 9rem;
-          height: 60px;
-          line-height: 1;
-          display: grid;
-          grid-template-columns: 0.8fr 2fr 0.5fr;
-          text-align: center;
-          // display: flex;
-          // justify-content: center;
-          align-items: center;
-          background: #ffffff;
-          border-radius: 40px;
-
-          border: 5px solid #{$color};
-          color: black;
-        }
-
-        .station {
-          font-size: 1.2rem;
-        }
-        .status {
-          font-size: 0.9rem;
-        }
-        .refresh {
-          font-size: 1.2rem;
-          &:hover {
-            cursor: pointer;
-          }
-        }
-      }
-    }
-  }
-}
-
-.room-body-submit {
-  height: 13vh;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.box-ing {
-  height: 1.2rem;
-  // margin-bottom: 10px;
-  margin: 0 0 10px 10px;
-  align-self: flex-start;
-}
-
-.form-chat {
-  display: flex;
-  width: 95%;
-  padding: 9px 15px 10px 30px;
-  border: 1px solid #888888;
-  border-radius: 60px;
-}
-
-.input-message {
-  width: 100%;
-  margin-right: 10px;
-  background-color: black;
-  color: white;
-  font-weight: 600;
-}
-
-.submit {
-  width: 40px;
-  height: 40px;
-  padding: 5px 10px;
-  font-weight: 600;
-  border-radius: 50px;
-  border: 1px solid $light-purple;
-  background-color: $light-purple;
-
-  &:hover {
-    cursor: pointer;
-    color: black;
-    background-color: white;
-  }
-}
-
-.box-chat {
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px;
-  overflow: auto;
-  height: 76vh;
-  background-color: rgba(0, 0, 0, 0.3);
-  background: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.8));
-}
-
-.message {
-  display: flex;
-  flex-direction: column;
-  margin: 1.2rem 0.5rem 0 0.5rem;
-  max-width: 70%;
-  font-family: $font-body;
-  line-height: 1;
-}
-
-.notice {
-  align-self: center;
-  padding: 8px 10px;
-  background-color: $green;
-  font-size: 0.9rem;
-  border-radius: 20px;
-}
-
-.me {
-  align-self: flex-end;
-}
-
-.you {
-  align-self: flex-start;
-}
-
-.text-user {
-  margin-bottom: 5px;
-  font-weight: 600;
-}
-
-.wrap-message {
-  display: flex;
-  align-items: flex-end;
-
-  .text-notice {
-    width: 20rem;
-    text-align: center;
-  }
-
-  .text-me {
-    min-height: 28px;
-    padding: 8px 15px;
-    color: black;
-    background-color: $light-purple;
-    border-radius: 20px;
-    margin: 0 0.5rem;
-  }
-
-  .text-you {
-    min-height: 28px;
-    padding: 8px 15px;
-    background-color: #523d73;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    // border-radius: 20px;
-    margin: 0 0.5rem;
-    position: relative;
-    &:before {
-      content: '';
-      position: absolute;
-      border-left: 10px solid transparent;
-      border-right: 10px solid $purple;
-      border-top: 10px solid $purple;
-      border-bottom: 10px solid transparent;
-      left: -15px;
-      top: 0px;
-    }
-  }
-
-  .text-time-me {
-    font-size: 0.9rem;
-    margin: 0 0.5rem;
-    order: -1;
-  }
-
-  .text-time-you {
-    font-size: 0.9rem;
-    margin: 0 0.5rem;
-  }
-}
-
 .out {
   position: absolute;
   top: 0;
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.6);
+  z-index: 90;
 }
+
 .container-alarm {
   display: flex;
   flex-direction: column;
@@ -555,6 +303,7 @@ a {
       font-size: 1.2rem;
       font-family: $font-body;
       color: black;
+      text-align: center;
     }
   }
 
