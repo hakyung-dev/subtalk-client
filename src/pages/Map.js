@@ -22,7 +22,7 @@ const Map = (props) => {
   } = props;
   const [mapCenter, setMapCenter] = useState(currentLocation);
   const mapRef = useRef();
-  const [zoom, setZoom] = useState(15);
+  const [zoom, setZoom] = useState(14);
 
   useEffect(() => {
     getNearStation(mapCenter);
@@ -31,6 +31,7 @@ const Map = (props) => {
   const handleDragEnd = () => {
     const newCenter = mapRef.current.getCenter().toJSON();
     setMapCenter(newCenter);
+    setZoom(14);
   };
 
   const closeModal = () => {
