@@ -4,16 +4,13 @@ import { SERVER_URL } from '../config';
 axios.defaults.baseURL = SERVER_URL;
 
 export const getRealtimeArrivalApi = async (stationName) => {
-  const realtimeArrival = await axios.get(
-    `http://swopenapi.seoul.go.kr/api/subway/${process.env.REACT_APP_REALTIME_KEY}/json/realtimeStationArrival/0/20/${stationName}`
-  );
+  const name = { stationName: stationName };
+  const realtimeArrival = await axios.put(`api/getRealtimeArrival`, name);
   return realtimeArrival;
 };
 
 export const getTrainPositionApi = async (train) => {
-  const getCurrentByLine = await axios.get(
-    `http://swopenapi.seoul.go.kr/api/subway/${process.env.REACT_APP_REALTIME_KEY}/json/realtimePosition/0/20/${train.line}`
-  );
+  const getCurrentByLine = await axios.put(`api/getTrainPosition`, train);
   return getCurrentByLine;
 };
 

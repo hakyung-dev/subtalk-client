@@ -72,7 +72,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     async getRealtimeArrivalInfo(station) {
       const res = await getRealtimeArrivalApi(station.statnNm);
-      const arrivalListByName = res.data.realtimeArrivalList;
+      const arrivalListByName = res.data.result.realtimeArrivalList;
       const upLine = [];
       const downLine = [];
       const filterById = (item) => {
@@ -124,7 +124,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     async getTrainPosition(train) {
       const res = await getTrainPositionApi(train);
-      const realtimePostionByLine = res.data.realtimePositionList;
+      const realtimePostionByLine = res.data.result.realtimePositionList;
       const findByNo = (item) => {
         if (item.trainNo === train.trainNo) return true;
         return false;
