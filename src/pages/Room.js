@@ -87,8 +87,10 @@ const Room = (props) => {
         <TrainInfo {...props} />
       </div>
       <div className="room-body-chat bg-room">
-        <div ref={scrollRef} className="box-chat">
-          {chatList}
+        <div className="box-chat">
+          <div className="ref-chat" ref={scrollRef}>
+            {chatList}
+          </div>
         </div>
       </div>
       <div className="room-body-submit">

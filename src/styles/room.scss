@@ -77,7 +77,8 @@
     font-weight: 600;
 
     .current-station {
-      min-width: 20rem;
+      min-width: 60%;
+      max-width: 90%;
       justify-content: center;
       align-items: center;
       border-radius: 40px;
@@ -86,7 +87,8 @@
         height: 50px;
         line-height: 1;
         display: grid;
-        grid-template-columns: 0.8fr 2fr 0.5fr;
+        grid-template-columns: 1fr 1fr 0.5fr;
+        column-gap: 5px;
         text-align: center;
         align-items: center;
         background: #ffffff;
@@ -103,6 +105,7 @@
       }
       .refresh {
         font-size: 1.2rem;
+        justify-self: flex-end;
         &:hover {
           cursor: pointer;
         }
@@ -113,19 +116,24 @@
 
 .room-body-chat {
   margin: 90px 0 105px 0;
-  height: calc(100vh - 195px);
+  height: calc(100% - 195px);
 }
 
 .box-chat {
   display: flex;
   flex-direction: column;
   padding: 20px 15px 0px;
-  height: inherit;
-  overflow: auto;
+  height: 100%;
   background: linear-gradient(
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.8)
   );
+
+  .ref-chat {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
 
   .message {
     margin-bottom: 10px;
@@ -134,11 +142,14 @@
 
   .notice {
     align-self: center;
+    display: flex;
+    justify-content: center;
     padding: 7px;
     background-color: $green;
     font-size: 0.9rem;
     border-radius: 20px;
     color: #ffffff;
+    width: 80%;
   }
 
   .me {
@@ -149,6 +160,7 @@
     color: #000000;
     margin-bottom: 2px;
     font-weight: 600;
+    font-family: $font-body;
   }
 
   .you {
@@ -162,7 +174,7 @@
     font-family: $font-body;
 
     .text-notice {
-      width: 20rem;
+      width: 19rem;
       text-align: center;
     }
 
@@ -185,7 +197,7 @@
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
       // border-radius: 20px;
-      margin: 0 5px;
+      margin: 0 5px 0 10px;
       position: relative;
 
       &:before {
@@ -244,6 +256,7 @@
       width: 100%;
       margin-right: 10px;
       font-weight: 600;
+      font-size: 1.1rem;
     }
 
     .submit {

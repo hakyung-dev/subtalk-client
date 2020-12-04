@@ -109,7 +109,6 @@ a {
 
   .platform {
     display: flex;
-    height: 40px;
     justify-content: center;
 
     .from {
@@ -139,7 +138,7 @@ a {
       display: flex;
       margin-top: 1rem;
       align-items: center;
-      height: 40px;
+      padding: 20px;
       background-color: #{$color};
 
       .name-box {
@@ -175,12 +174,14 @@ a {
   }
 
   .close {
-    color: grey;
+    color: #8d8d8d;
     font-size: 1.2rem;
-  }
+    font-family: $font-body;
 
-  .close:hover {
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+      color: #000000;
+    }
   }
 
   .timer {

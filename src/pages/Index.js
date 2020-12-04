@@ -23,6 +23,9 @@ const Home = (props) => {
     if (value.length < 2) {
       return setError('이름은 두 글자 이상 되어야 합니다.');
     }
+    if (value.length > 10) {
+      return setError('이름은 열 글자 이하만 가능합니다.');
+    }
 
     setName(value);
   };
